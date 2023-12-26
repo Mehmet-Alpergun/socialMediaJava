@@ -1,0 +1,21 @@
+                                   REPORT
+
+We used the Dijkstra algorithm as a solution to the dining philosopher deadlock problem because it is relatively easy to adapt to the code. In the Dijkstra algorithm, when a philosopher picks up the left fork, if the right fork is not available, the philosopher puts down the left fork. In the existing code, we added the "put_down" and "pick_up" functions to the "Fork" class and updated the "eat" function in the "Philosopher" class.
+
+
+ 
+
+
+It checks whether the fork can be acquired by using locking mechanisms. If the fork can be taken, the self.owner is added to the owner, and the state is set to "picked_up," returning true. If it cannot be acquired, it returns false.
+
+
+ 
+
+In the "put_down" method, the fork is released, the state is set to "picked_up" becomes false, and the owner reverts to -1 when the fork is in the available state.
+
+ 
+
+A loop begins while the condition is true. In the first "if" statement, it checks if it can pick up the left fork. If it can, it then checks the right fork; if the right fork is also available, it enters the eating state.  After a while, the eating state ends, the forks are released, and the spaghetti amount is reduced. If the right fork is not available, it releases the left fork and the philosopher keeps attempting to reach the forks within the loop until both forks are accessible.
+
+
+
